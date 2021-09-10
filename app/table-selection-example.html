@@ -1,72 +1,109 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-grid-list cols="1" gutterSize="5px">
+  <mat-grid-tile-header></mat-grid-tile-header>
+</mat-grid-list>
 
-  <!-- Checkbox Column -->
-  <ng-container matColumnDef="select">
-    <th mat-header-cell *matHeaderCellDef>
-      <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
-        [indeterminate]="selection.hasValue() && !isAllSelected()">
-      </mat-checkbox>
-    </th>
-    <td mat-cell *matCellDef="let row">
-      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-        [checked]="selection.isSelected(row)">
-      </mat-checkbox>
-    </td>
-  </ng-container>
+<mat-grid-list cols="4" gutterSize="5px">
 
-   <!-- Position Column -->
-   <ng-container matColumnDef="transactionID">
-   <th mat-header-cell *matHeaderCellDef> Transaction ID </th>
-   <td mat-cell *matCellDef="let element"> {{element.transactionID}} </td>
- </ng-container>
- 
-  <!-- transactionID Column -->
-  <ng-container matColumnDef="deviceID">
-    <th mat-header-cell *matHeaderCellDef> Device ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.deviceID}} </td>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="orderDate">
-    <th mat-header-cell *matHeaderCellDef> Order Date </th>
-    <td mat-cell *matCellDef="let element"> {{element.orderDate}} </td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="recommendation">
-    <th mat-header-cell *matHeaderCellDef> Recommendation </th>
-    <td mat-cell *matCellDef="let element" [ngStyle]="{'background-color':getColor(element.recommendation)}">
-      {{element.recommendation}}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="customerID">
-    <th mat-header-cell *matHeaderCellDef> Customer ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.customerID}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="customerIP">
-    <th mat-header-cell *matHeaderCellDef> Customer IP </th>
-    <td mat-cell *matCellDef="let element"> {{element.customerIP}} </td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="cardNum">
-    <th mat-header-cell *matHeaderCellDef> Card Number </th>
-    <td mat-cell *matCellDef="let element"> {{element.cardNum}} </td>
-  </ng-container>
-
-  <!-- Position Column -->
-  <ng-container matColumnDef="customerName">
-  <th mat-header-cell *matHeaderCellDef> Customer Name </th>
-  <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
-</ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
-  </tr>
-</table>
+  <mat-grid-tile colspan="1" rowspan = "1">
+    <mat-card>
+      <mat-card-title>Search Results</mat-card-title>
+    </mat-card>
+  </mat-grid-tile>
 
 
-<!-- Copyright 2018 Google Inc. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license -->
+  <mat-grid-tile colspan="3" rowspan = "1">
+    <div class="tableHeader">
+  <mat-card>
+  <mat-card-title>Search Results</mat-card-title>
+  <mat-card-subtitle>
+    <mat-list role="list">
+      <mat-list-item role="listitem">Click and block</mat-list-item>
+      <mat-list-item role="listitem">Edit reccommendation</mat-list-item>
+      <mat-list-item role="listitem">Show/Hide Columns</mat-list-item>
+    </mat-list>
+  </mat-card-subtitle>
+</mat-card>
+</div>
+    <!-- define tabe data source -->
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      
+      <!-- defining column templates -->
+
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        </th>
+        <td mat-cell *matCellDef="let column">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(column) : null"
+            [checked]="selection.isSelected(column)">
+          </mat-checkbox>
+          {{column.select}}
+        </td>
+      </ng-container>
+
+      <!-- transactionID Column -->
+      <ng-container matColumnDef="transactionID">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Transaction ID </th>
+        <td mat-cell *matCellDef="let column"> {{column.transactionID}} </td>
+      </ng-container>
+
+      <!-- deviceID Column -->
+      <ng-container matColumnDef="deviceID">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Device ID </th>
+        <td mat-cell *matCellDef="let column"> {{column.deviceID}} </td>
+      </ng-container>
+
+      <!-- orderDate Column -->
+      <ng-container matColumnDef="orderDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Order Date </th>
+        <td mat-cell *matCellDef="let column"> {{column.orderDate}} </td>
+      </ng-container>
+
+      <!-- recommendation Column -->
+      <ng-container matColumnDef="recommendation">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Recommendation </th>
+        <td mat-cell *matCellDef="let column" [ngStyle]="{'background-color':getColor(column.recommendation)}">
+          {{column.recommendation}}</td>
+      </ng-container>
+
+      <!-- customerID Column -->
+      <ng-container matColumnDef="customerID">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer ID </th>
+        <td mat-cell *matCellDef="let column"> {{column.customerID}} </td>
+      </ng-container>
+
+      <!-- customerIP Column -->
+      <ng-container matColumnDef="customerIP">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer IP </th>
+        <td mat-cell *matCellDef="let column"> {{column.customerIP}} </td>
+      </ng-container>
+
+      <!-- cardNum Column -->
+      <ng-container matColumnDef="cardNum">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Card Number </th>
+        <td mat-cell *matCellDef="let column"> {{column.cardNum}} </td>
+      </ng-container>
+
+      <!-- customerName Column -->
+      <ng-container matColumnDef="customerName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name </th>
+        <td mat-cell *matCellDef="let column"> {{column.customerName}} </td>
+      </ng-container>
+
+
+      <!-- defining columns to render in table header -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <!-- defining columns to render in table body -->
+      <tr mat-row *matRowDef="let column; columns: displayedColumns;" (click)="selection.toggle(column)">
+      </tr>
+      <!-- table pagination -->
+      
+    </table>
+    <mat-paginator aria-label="Select page of results" [pageSizeOptions]="[5,30, 50, 100, 300]">
+  </mat-paginator>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list cols="4" gutterSize="5px">
+<mat-grid-tile-footer></mat-grid-tile-footer>
+</mat-grid-list>

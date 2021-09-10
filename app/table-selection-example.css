@@ -1,3 +1,31 @@
-table {
+table, .tableHeader, .mat-paginator {
   width: 100%;
+}
+
+mat-grid-tile.mat-grid-tile {
+  height: 100%;
+}
+
+mat-grid-tile {
+  background: lightgrey;
+}
+
+
+
+:host ::ng-deep .mat-form-field-underline,
+.mat-select .mat-select-arrow-wrapper .mat-select-arrow, ::ng-deep .mat-sort-header-arrow.ng-trigger.ng-trigger-arrowPosition  {
+  display: none;
+}
+
+:host::ng-deep.mat-select .mat-select-value:after {
+  font-family: 'Material Icons';
+  content: 'expand_more';
+}
+
+:host::ng-deep .mat-paginator-navigation-previous .mat-button-wrapper:after {
+  content: 'Previous';
+}
+
+:host::ng-deep .mat-paginator-navigation-next .mat-button-wrapper:before {
+  content: 'Next';
 }
