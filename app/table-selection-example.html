@@ -1,8 +1,6 @@
-<mat-grid-list cols="1" gutterSize="5px">
-  <mat-grid-tile-header></mat-grid-tile-header>
-</mat-grid-list>
 
 <mat-grid-list cols="4" gutterSize="5px">
+<mat-grid-tile-header>1</mat-grid-tile-header>
 
   <mat-grid-tile colspan="1" rowspan = "1">
     <mat-card>
@@ -102,8 +100,7 @@
     <mat-paginator aria-label="Select page of results" [pageSizeOptions]="[5,30, 50, 100, 300]">
   </mat-paginator>
   </mat-grid-tile>
+  <mat-grid-tile-footer></mat-grid-tile-footer>
+
 </mat-grid-list>
 
-<mat-grid-list cols="4" gutterSize="5px">
-<mat-grid-tile-footer></mat-grid-tile-footer>
-</mat-grid-list>
